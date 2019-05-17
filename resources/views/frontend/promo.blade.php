@@ -10,7 +10,7 @@
                     <i class="fas fa-home"></i> @lang('navs.general.home')
                 </div>
                 <div class="card-body">
-                    @lang('strings.frontend.welcome_to', ['place' => app_name()])
+                    TRAVEL PROMO
                 </div>
             </div><!--card-->
         </div><!--col-->

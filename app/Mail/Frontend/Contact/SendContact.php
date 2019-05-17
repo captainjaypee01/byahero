@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Log;
 
 /**
  * Class SendContact.
@@ -36,11 +37,13 @@ class SendContact extends Mailable
      */
     public function build()
     {
+        Log::info($this->request);
         return $this->to(config('mail.from.address'), config('mail.from.name'))
             ->view('frontend.mail.contact')
             ->text('frontend.mail.contact-text')
             ->subject(__('strings.emails.contact.subject', ['app_name' => app_name()]))
-            ->from($this->request->email, $this->request->name)
+            ->from( env("MAIL_USERNAME"), env("APP_NAME"))
+            // ->replyTo( "jaypeedala31@gmail.com", env("APP_NAME"));
             ->replyTo($this->request->email, $this->request->name);
     }
 }
